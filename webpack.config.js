@@ -10,7 +10,6 @@ module.exports = {
   entry: {
     config: "./src/js/config.ts",
     desktop: "./src/js/desktop.ts",
-    mobile: "./src/js/mobile.ts",
   },
   output: {
     path: path.resolve(__dirname, "plugin", "js"),
@@ -39,6 +38,10 @@ module.exports = {
             "@babel/preset-react",
           ],
         },
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
