@@ -1,0 +1,35 @@
+{
+  "manifest_version": 1,
+  "version": 1,
+  "type": "APP",
+  "desktop": {
+    "js": [
+      "js/desktop.js"
+    ],
+    "css": [
+      "css/desktop.css"
+    ]
+  },
+  "icon": "image/icon.png",
+  "config": {
+    "html": "html/config.html",
+    "js": [
+      "js/config.js"
+    ],
+    "css": [
+      "css/51-modern-default.css",
+      "css/config.css"
+    ],
+    "required_params": [
+      "message"
+    ]
+  },
+  "name": {
+    "en": "kintone-copy-to-google-spreadsheet",
+    "ja": "Googleスプレッドシートにデータ出力"
+  },
+  "description": {
+    "en": "Output kintone data to Google Spreadsheet",
+    "ja": "KintoneのレコードデータをGoogleスプレッドシートに出力します"
+  }
+}
