@@ -6,19 +6,19 @@ const PLUGIN_ID = kintone.$PLUGIN_ID;
 
 const form = document.querySelector(".js-submit-settings")!;
 const cancelButton = document.querySelector(".js-cancel-button")!;
-const messageInput = document.querySelector<HTMLInputElement>(
-  ".js-text-message"
+const buttonLabelInput = document.querySelector<HTMLInputElement>(
+  ".js-text-button-label"
 )!;
 const config = kintone.plugin.app.getConfig(PLUGIN_ID);
 
-if (config.message) {
-  messageInput.value = config.message;
+if (config.buttonLabel) {
+  buttonLabelInput.value = config.buttonLabel;
 }
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  kintone.plugin.app.setConfig({ message: messageInput.value }, () => {
-    alert("The plug-in settings have been saved. Please update the app!");
+  kintone.plugin.app.setConfig({ buttonLabel: buttonLabelInput.value }, () => {
+    alert("プラグイン設定の更新を完了するには「アプリを更新」を押してください");
     window.location.href = "../../flow?app=" + kintone.app.getId();
   });
 });
