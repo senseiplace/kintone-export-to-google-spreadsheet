@@ -21,6 +21,9 @@
       "css/config.css"
     ],
     "required_params": [
+      "spreadsheetId",
+      "serviceAccountClientEmail",
+      "serviceAccountPrivateKey"
     ]
   },
   "name": {
