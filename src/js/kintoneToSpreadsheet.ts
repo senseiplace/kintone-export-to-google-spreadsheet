@@ -50,6 +50,8 @@ export default class KintoneToSpreadsheet {
         ].includes(key)
     );
     keys.sort();
+    keys.push("作成日時");
+    keys.push("更新日時");
     console.log(keys);
 
     this.headerKeys = keys;
