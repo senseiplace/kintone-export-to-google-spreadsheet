@@ -1,6 +1,3 @@
-// You can use the ESModules syntax and @kintone/rest-api-client without additional settings.
-// import { KintoneRestAPIClient } from "@kintone/rest-api-client";
-
 import {
   Button,
   NotifyPopup,
