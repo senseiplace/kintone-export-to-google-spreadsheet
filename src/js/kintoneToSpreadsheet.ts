@@ -57,17 +57,29 @@ export default class KintoneToSpreadsheet {
     allRecords.forEach((record) => {
       const rowArray: string[] = [];
       keys.forEach((key) => {
-        if (record[key].value == null) {
-          rowArray.push("");
-        } else {
-          rowArray.push(record[key].value!.toString());
-        }
+        rowArray.push(this.parseData(record[key]));
       });
 
       this.allRecordsArray!.push(rowArray);
     });
 
     console.log(this.allRecordsArray);
+  }
+
+  parseData(data: any): string {
+    if (data.value == null) {
+      return "";
+    }
+
+    if (data.type === "USER_SELECT") {
+      const names: string[] = [];
+      data.value.forEach((person: any) => {
+        names.push(person.name as string);
+      });
+      return names.join("\n");
+    }
+
+    return data.value.toString();
   }
 
   /** kintoneデータをGoogleスプレッドシートに出力するメイン処理 */
