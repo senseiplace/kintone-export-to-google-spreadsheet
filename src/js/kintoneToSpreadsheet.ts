@@ -45,6 +45,7 @@ export default class KintoneToSpreadsheet {
           "作成者",
           "作成日時",
           "更新者",
+          "更新日時",
           "活動履歴",
         ].includes(key)
     );
