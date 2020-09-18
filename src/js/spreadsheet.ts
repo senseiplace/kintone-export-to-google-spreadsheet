@@ -48,9 +48,33 @@ export default class Spreadsheet {
     }
   }
 
+  /** シートの行数・列数を変更する */
+  async resizeSheet({
+    rowCount = 1000,
+    columnCount = 26,
+  }: {
+    rowCount?: number;
+    columnCount?: number;
+  }) {
+    await this.sheet!.resize({
+      rowCount: rowCount || this.sheet!.gridProperties.rowCount,
+      columnCount: columnCount || this.sheet!.gridProperties.columnCount,
+      frozenRowCount: this.sheet!.gridProperties.frozenRowCount,
+      frozenColumnCount: this.sheet!.gridProperties.frozenColumnCount,
+      rowGroupControlAfter: this.sheet!.gridProperties.rowGroupControlAfter,
+      columnGroupControlAfter: this.sheet!.gridProperties
+        .columnGroupControlAfter,
+      hideGridlines: this.sheet!.gridProperties.hideGridlines,
+    });
+  }
+
   /** 既存データを削除してからヘッダーとデータを挿入 */
   async setValues(headerKeys: string[], records: string[][]) {
     await this.sheet!.clear();
+    await this.resizeSheet({
+      rowCount: records.length + 100,
+      columnCount: headerKeys.length,
+    });
     await this.sheet!.setHeaderRow(headerKeys);
     await this.sheet!.addRows(records);
   }
