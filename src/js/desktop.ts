@@ -6,7 +6,7 @@ import {
   NotifyPopup,
   Spinner,
 } from "@kintone/kintone-ui-component/esm/js";
-import Spreadsheet from "./spreadsheet";
+import KintoneToSpreadsheet from "./kintoneToSpreadsheet";
 
 // @ts-expect-error
 const PLUGIN_ID = kintone.$PLUGIN_ID;
@@ -22,10 +22,9 @@ kintone.events.on("app.record.index.show", () => {
   const buttonLabel = config.buttonLabel || "スプシに出力";
   const button = new Button({ text: buttonLabel, type: "submit" });
   menuSpaceElement.appendChild(button.render());
-  button.on("click", function () {
-    addSheet("test");
-  });
+  button.on("click", () => onClickButton());
 
+  /** NotifyPopup を表示 */
   const showPopup = (text: string, type?: "error" | "success" | "info") => {
     const popup = new NotifyPopup({
       text: text,
@@ -34,19 +33,18 @@ kintone.events.on("app.record.index.show", () => {
     bodyElement.appendChild(popup.render());
   };
 
-  const addSheet = (sheetName: string) => {
-    const spreadsheet = new Spreadsheet(
-      config.spreadsheetId,
-      config.serviceAccountClientEmail,
-      config.serviceAccountPrivateKey
-    );
+  /** スプシに出力ボタンが押された際の処理 */
+  const onClickButton = () => {
+    const kintoneToSpreadsheet = new KintoneToSpreadsheet({
+      // TODO: sheetName を config で指定できるようにするのはあとで実装
+      spreadsheetId: config.spreadsheetId,
+      serviceAccountClientEmail: config.serviceAccountClientEmail,
+      serviceAccountPrivateKey: config.serviceAccountPrivateKey,
+    });
 
     spinner.show();
-    spreadsheet
-      .initDoc()
-      .then(() => {
-        return spreadsheet.addSheet(sheetName);
-      })
+    kintoneToSpreadsheet
+      .exec()
       .then(() => {
         showPopup("処理が完了しました", "success");
       })

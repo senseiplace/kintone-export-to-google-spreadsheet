@@ -6,11 +6,15 @@ export default class Spreadsheet {
   serviceAccountPrivateKey: string;
   doc?: GoogleSpreadsheet;
 
-  constructor(
-    spreadsheetId: string,
-    serviceAccountClientEmail: string,
-    serviceAccountPrivateKey: string
-  ) {
+  constructor({
+    spreadsheetId,
+    serviceAccountClientEmail,
+    serviceAccountPrivateKey,
+  }: {
+    spreadsheetId: string;
+    serviceAccountClientEmail: string;
+    serviceAccountPrivateKey: string;
+  }) {
     this.spreadsheetId = spreadsheetId;
     this.serviceAccountClientEmail = serviceAccountClientEmail;
     this.serviceAccountPrivateKey = serviceAccountPrivateKey;
