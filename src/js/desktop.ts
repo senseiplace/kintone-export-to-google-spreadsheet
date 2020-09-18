@@ -2,6 +2,7 @@
 // import { KintoneRestAPIClient } from "@kintone/rest-api-client";
 
 import { Alert, Button } from "@kintone/kintone-ui-component/esm/js";
+import Spreadsheet from "./spreadsheet";
 
 // @ts-expect-error
 const PLUGIN_ID = kintone.$PLUGIN_ID;
@@ -16,6 +17,26 @@ kintone.events.on("app.record.index.show", () => {
   const button = new Button({ text: buttonLabel, type: "submit" });
   menuSpaceElement.appendChild(button.render());
 
+  const addSheet = (sheetName: string) => {
+    const spreadsheet = new Spreadsheet(
+      config.spreadsheetId,
+      config.serviceAccountClientEmail,
+      config.serviceAccountPrivateKey
+    );
+
+    spreadsheet
+      .initDoc()
+      .then(() => {
+        return spreadsheet.addSheet(sheetName);
+      })
+      .then(() => {
+        console.log("OK");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   button.on("click", function () {
     if (alert === null) {
       alert = new Alert({
@@ -28,6 +49,8 @@ kintone.events.on("app.record.index.show", () => {
       });
       spaceElement.appendChild(alert.render());
       alert.show();
+
+      addSheet("test");
     }
   });
 });
