@@ -52,4 +52,10 @@ module.exports = {
       pluginZipPath: "./dist/plugin.zip",
     }),
   ],
+  node: {
+    child_process: "empty",
+    fs: "empty",
+    net: "empty",
+    tls: "empty",
+  },
 };
