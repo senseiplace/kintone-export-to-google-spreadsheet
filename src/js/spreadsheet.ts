@@ -1,10 +1,14 @@
-import { GoogleSpreadsheet } from "google-spreadsheet";
+import {
+  GoogleSpreadsheet,
+  GoogleSpreadsheetWorksheet,
+} from "google-spreadsheet";
 
 export default class Spreadsheet {
   spreadsheetId: string;
   serviceAccountClientEmail: string;
   serviceAccountPrivateKey: string;
   doc?: GoogleSpreadsheet;
+  sheet?: GoogleSpreadsheetWorksheet;
 
   constructor({
     spreadsheetId,
@@ -34,7 +38,11 @@ export default class Spreadsheet {
     await this.doc!.loadInfo();
   }
 
-  async addSheet(title: string) {
-    await this.doc!.addSheet({ title: title });
+  async initSheet(sheetName: string) {
+    this.sheet = this.doc!.sheetsByTitle[sheetName];
+
+    if (this.sheet == null) {
+      this.sheet = await this.doc!.addSheet({ title: sheetName });
+    }
   }
 }

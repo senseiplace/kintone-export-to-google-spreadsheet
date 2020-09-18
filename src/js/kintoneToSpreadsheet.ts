@@ -33,9 +33,10 @@ export default class KintoneToSpreadsheet {
     await spreadsheet
       .initDoc()
       .then(() => {
-        return spreadsheet.addSheet(this.sheetName);
+        return spreadsheet.initSheet(this.sheetName);
       })
       .then(() => {
+        console.log(spreadsheet.sheet);
         console.log("OK");
       });
   }
