@@ -1,21 +1,38 @@
 // You can use the ESModules syntax and @kintone/rest-api-client without additional settings.
 // import { KintoneRestAPIClient } from "@kintone/rest-api-client";
 
-import { Alert, Button } from "@kintone/kintone-ui-component/esm/js";
+import {
+  Button,
+  NotifyPopup,
+  Spinner,
+} from "@kintone/kintone-ui-component/esm/js";
 import Spreadsheet from "./spreadsheet";
 
 // @ts-expect-error
 const PLUGIN_ID = kintone.$PLUGIN_ID;
 
 kintone.events.on("app.record.index.show", () => {
-  let alert: Alert | null = null;
   const config = kintone.plugin.app.getConfig(PLUGIN_ID);
 
-  const spaceElement = kintone.app.getHeaderSpaceElement()!;
+  const bodyElement = document.getElementsByTagName("BODY")[0];
+  const spinner = new Spinner();
+  bodyElement.appendChild(spinner.render());
+
   const menuSpaceElement = kintone.app.getHeaderMenuSpaceElement()!;
   const buttonLabel = config.buttonLabel || "スプシに出力";
   const button = new Button({ text: buttonLabel, type: "submit" });
   menuSpaceElement.appendChild(button.render());
+  button.on("click", function () {
+    addSheet("test");
+  });
+
+  const showPopup = (text: string, type?: "error" | "success" | "info") => {
+    const popup = new NotifyPopup({
+      text: text,
+      type: type,
+    });
+    bodyElement.appendChild(popup.render());
+  };
 
   const addSheet = (sheetName: string) => {
     const spreadsheet = new Spreadsheet(
@@ -24,33 +41,20 @@ kintone.events.on("app.record.index.show", () => {
       config.serviceAccountPrivateKey
     );
 
+    spinner.show();
     spreadsheet
       .initDoc()
       .then(() => {
         return spreadsheet.addSheet(sheetName);
       })
       .then(() => {
-        console.log("OK");
+        showPopup("処理が完了しました", "success");
       })
       .catch((err) => {
-        console.error(err);
+        showPopup(`処理が途中で失敗しました<br>${err}`);
+      })
+      .finally(() => {
+        spinner.hide();
       });
   };
-
-  button.on("click", function () {
-    if (alert === null) {
-      alert = new Alert({
-        text: "ボタンが押されたよ！",
-        type: "success",
-      });
-      alert.on("click", () => {
-        alert!.hide();
-        alert = null;
-      });
-      spaceElement.appendChild(alert.render());
-      alert.show();
-
-      addSheet("test");
-    }
-  });
 });
