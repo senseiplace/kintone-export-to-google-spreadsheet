@@ -74,15 +74,21 @@ export default class KintoneToSpreadsheet {
       return "";
     }
 
-    if (data.type === "USER_SELECT") {
-      const names: string[] = [];
-      data.value.forEach((person: any) => {
-        names.push(person.name as string);
-      });
-      return names.join("\n");
+    switch (data.type) {
+      case "CREATOR":
+      case "MODIFIER":
+        return data.value.name.toString();
+      case "USER_SELECT":
+        const names: string[] = [];
+        data.value.forEach((person: any) => {
+          names.push(person.name as string);
+        });
+        return names.join("\n");
+      case "MULTI_SELECT":
+        return data.value.join("\n");
+      default:
+        return data.value.toString();
     }
-
-    return data.value.toString();
   }
 
   /** kintoneデータをGoogleスプレッドシートに出力するメイン処理 */

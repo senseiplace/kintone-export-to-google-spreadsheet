@@ -3,4 +3,7 @@ module.exports = {
   globals: {
     kintone: false,
   },
+  rules: {
+    "no-case-declarations": "off",
+  },
 };
