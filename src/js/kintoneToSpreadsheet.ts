@@ -38,7 +38,7 @@ export default class KintoneToSpreadsheet {
       app: kintone.app.getId()!,
       orderBy: "更新日時 desc",
     });
-    // console.log(allRecords);
+    // console.log(allRecords); // デバッグ用
 
     this.setHeaderKeys(allRecords[0]);
     if (this.headerKeys == null || this.headerKeys.length === 0) {
@@ -62,6 +62,11 @@ export default class KintoneToSpreadsheet {
     return Promise.resolve();
   }
 
+  /**
+   * スプレッドシートに出力する列名の一覧を設定する。
+   * fieldCodeList がプラグイン設定にて設定されていない場合は、ほぼ全てのフィールドコードを選択
+   * @param record レコード1件。フィールドコードの一覧を取得するために使用
+   */
   setHeaderKeys(record: any) {
     const recordKeys = Object.keys(record);
     let fieldCodes: string[] = [];
@@ -98,6 +103,10 @@ export default class KintoneToSpreadsheet {
     this.headerKeys = fieldCodes;
   }
 
+  /**
+   * セルに値が出力されるようパース
+   * @TODO data.type の対応はよく使うものに絞っているので、必要に応じて増やす必要アリ
+   */
   parseData(data: any): string {
     if (data.value == null) {
       return "";
@@ -137,9 +146,6 @@ export default class KintoneToSpreadsheet {
       })
       .then(() => {
         return spreadsheet.setValues(this.headerKeys!, this.allRecordsArray!);
-      })
-      .then(() => {
-        console.log("OK");
       });
   }
 }
