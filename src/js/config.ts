@@ -16,11 +16,11 @@ const serviceAccountPrivateKeyInput = document.querySelector<HTMLInputElement>(
   "#serviceAccountPrivateKey"
 )!;
 const sheetNameInput = document.querySelector<HTMLInputElement>("#sheetName")!;
-const buttonLabelInput = document.querySelector<HTMLInputElement>(
-  "#buttonLabel"
-)!;
 const fieldCodeListInput = document.querySelector<HTMLInputElement>(
   "#fieldCodeList"
+)!;
+const buttonLabelInput = document.querySelector<HTMLInputElement>(
+  "#buttonLabel"
 )!;
 const config = kintone.plugin.app.getConfig(PLUGIN_ID);
 
@@ -29,8 +29,8 @@ function initFieldValues() {
   serviceAccountClientEmailInput.value = config.serviceAccountClientEmail || "";
   serviceAccountPrivateKeyInput.value = config.serviceAccountPrivateKey || "";
   sheetNameInput.value = config.sheetName || "";
-  buttonLabelInput.value = config.buttonLabel || "";
   fieldCodeListInput.value = config.fieldCodeList || "";
+  buttonLabelInput.value = config.buttonLabel || "";
 }
 
 initFieldValues();
@@ -43,8 +43,8 @@ form.addEventListener("submit", (e) => {
       serviceAccountClientEmail: serviceAccountClientEmailInput.value,
       serviceAccountPrivateKey: serviceAccountPrivateKeyInput.value,
       sheetName: sheetNameInput.value,
-      buttonLabel: buttonLabelInput.value,
       fieldCodeList: fieldCodeListInput.value,
+      buttonLabel: buttonLabelInput.value,
     },
     () => {
       alert(
