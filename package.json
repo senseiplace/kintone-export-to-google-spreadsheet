@@ -1,6 +1,7 @@
 {
-  "name": "kintone-copy-to-google-spreadsheet",
-  "version": "0.1.0",
+  "name": "kintone-export-to-google-spreadsheet",
+  "description": "KintoneのレコードデータをGoogleスプレッドシートへ出力します",
+  "version": "1.0.0",
   "scripts": {
     "prestart": "npm run build",
     "start": "node scripts/npm-start.js",
