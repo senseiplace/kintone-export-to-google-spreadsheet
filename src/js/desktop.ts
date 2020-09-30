@@ -33,8 +33,8 @@ kintone.events.on("app.record.index.show", () => {
   /** スプシに出力ボタンが押された際の処理 */
   const onClickButton = () => {
     const kintoneToSpreadsheet = new KintoneToSpreadsheet({
-      // TODO: sheetName を config で指定できるようにするのはあとで実装
       spreadsheetId: config.spreadsheetId,
+      sheetName: config.sheetName,
       serviceAccountClientEmail: config.serviceAccountClientEmail,
       serviceAccountPrivateKey: config.serviceAccountPrivateKey,
     });

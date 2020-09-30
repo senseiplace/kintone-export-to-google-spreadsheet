@@ -15,6 +15,7 @@ const serviceAccountClientEmailInput = document.querySelector<HTMLInputElement>(
 const serviceAccountPrivateKeyInput = document.querySelector<HTMLInputElement>(
   "#serviceAccountPrivateKey"
 )!;
+const sheetNameInput = document.querySelector<HTMLInputElement>("#sheetName")!;
 const buttonLabelInput = document.querySelector<HTMLInputElement>(
   "#buttonLabel"
 )!;
@@ -24,6 +25,7 @@ function initFieldValues() {
   spreadsheetIdInput.value = config.spreadsheetId || "";
   serviceAccountClientEmailInput.value = config.serviceAccountClientEmail || "";
   serviceAccountPrivateKeyInput.value = config.serviceAccountPrivateKey || "";
+  sheetNameInput.value = config.sheetName || "";
   buttonLabelInput.value = config.buttonLabel || "";
 }
 
@@ -36,6 +38,7 @@ form.addEventListener("submit", (e) => {
       spreadsheetId: spreadsheetIdInput.value,
       serviceAccountClientEmail: serviceAccountClientEmailInput.value,
       serviceAccountPrivateKey: serviceAccountPrivateKeyInput.value,
+      sheetName: sheetNameInput.value,
       buttonLabel: buttonLabelInput.value,
     },
     () => {
