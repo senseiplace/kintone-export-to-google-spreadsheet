@@ -32,6 +32,6 @@
   },
   "description": {
     "en": "Export kintone data to Google Spreadsheet",
-    "ja": "KintoneのレコードデータをGoogleスプレッドシートへ出力します"
+    "ja": "kintone のレコードデータを Google スプレッドシートへ出力します"
   }
 }
