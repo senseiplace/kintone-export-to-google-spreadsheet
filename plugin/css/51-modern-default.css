@@ -84,7 +84,8 @@
 <div class="kintoneplugin-desc">Description of the setting</div>
 */
 .kintoneplugin-desc {
-  margin-bottom: 8px;
+  display: block;
+  margin: 8px 0;
   font-size: 14px;
   color: #888;
 }
@@ -94,7 +95,7 @@
 <div class="kintoneplugin-label">Title<span class="kintoneplugin-require">*</span></div>
 */
 .kintoneplugin-require {
-  color: #c09853;
+  color: #e23535;
 }
 
 /* Input (text box) */

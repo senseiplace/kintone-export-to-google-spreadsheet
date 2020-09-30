@@ -7,16 +7,16 @@ const PLUGIN_ID = kintone.$PLUGIN_ID;
 const form = document.querySelector(".js-submit-settings")!;
 const cancelButton = document.querySelector(".js-cancel-button")!;
 const spreadsheetIdInput = document.querySelector<HTMLInputElement>(
-  ".js-text-spreadsheet-id"
+  "#spreadsheetId"
 )!;
 const serviceAccountClientEmailInput = document.querySelector<HTMLInputElement>(
-  ".js-text-service-account-client-email"
+  "#serviceAccountClientEmail"
 )!;
 const serviceAccountPrivateKeyInput = document.querySelector<HTMLInputElement>(
-  ".js-text-service-account-private-key"
+  "#serviceAccountPrivateKey"
 )!;
 const buttonLabelInput = document.querySelector<HTMLInputElement>(
-  ".js-text-button-label"
+  "#buttonLabel"
 )!;
 const config = kintone.plugin.app.getConfig(PLUGIN_ID);
 

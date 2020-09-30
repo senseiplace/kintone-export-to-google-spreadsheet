@@ -3,5 +3,6 @@
 }
 
 .kintoneplugin-input-text {
-  width: 20em;
+  width: 40rem;
+  max-width: 100%;
 }

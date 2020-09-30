@@ -1,43 +1,43 @@
 <section class="settings">
   <h2 class="settings-heading">Googleスプレッドシートにデータ出力プラグインの設定</h2>
   <form class="js-submit-settings">
-    <p class="kintoneplugin-row">
-      <label for="spreadsheetId">
-        スプレッドシートID:
-        <input type="text" class="js-text-spreadsheet-id kintoneplugin-input-text">
-        <div class="kintoneplugin-desc">https://docs.google.com/spreadsheets/d/xxxxxxxxxxx/edit の xxxxxxxxxxx の部分</div>
-      </label>
-    </p>
-    <p class="kintoneplugin-row">
-      <label for="serviceAccountClientEmail">
-        client email:
-        <input type="text" class="js-text-service-account-client-email kintoneplugin-input-text">
-        <div class="kintoneplugin-desc">
-          Google Developer Console で作成したサービスアカウントの client_email
-          <br>このメールアドレスを上のスプレッドシートに編集権限で招待することも忘れずに
-        </div>
-      </label>
-    </p>
-    <p class="kintoneplugin-row">
-      <label for="serviceAccountPrivateKey">
-        private key:
-        <input type="text" class="js-text-service-account-private-key kintoneplugin-input-text">
-        <div class="kintoneplugin-desc">
-          Google Developer Console で作成したサービスアカウントの private_key
-          <br>「新しい鍵を作成」で作成したJSONファイル内に書かれている、とても長い文字列
-        </div>
-      </label>
-    </p>
-    <p class="kintoneplugin-row">
-      <label for="buttonLabel">
-        ボタン名:
-        <input type="text" class="js-text-button-label kintoneplugin-input-text">
-      </label>
+    <div class="kintoneplugin-row">
+      <div class="kintoneplugin-label">スプレッドシートID<span class="kintoneplugin-require">（必須）</span></div>
+      <div class="kintoneplugin-input-outer">
+        <input type="text" id="spreadsheetId" class="kintoneplugin-input-text">
+      </div>
+      <div class="kintoneplugin-desc">https://docs.google.com/spreadsheets/d/xxxxxxxxxxx/edit の xxxxxxxxxxx の部分</div>
+    </div>
+    <div class="kintoneplugin-row">
+      <div class="kintoneplugin-label">client email<span class="kintoneplugin-require">（必須）</span></div>
+      <div class="kintoneplugin-input-outer">
+        <input type="text" id="serviceAccountClientEmail" class="kintoneplugin-input-text">
+      </div>
+      <div class="kintoneplugin-desc">
+        Google Developer Console で作成したサービスアカウントの client_email
+        <br>このメールアドレスを上のスプレッドシートに編集権限で招待することも忘れずに
+      </div>
+    </div>
+    <div class="kintoneplugin-row">
+      <div class="kintoneplugin-label">private key<span class="kintoneplugin-require">（必須）</span></div>
+      <div class="kintoneplugin-input-outer">
+        <input type="text" id="serviceAccountPrivateKey" class="kintoneplugin-input-text">
+      </div>
+      <div class="kintoneplugin-desc">
+        Google Developer Console で作成したサービスアカウントの private_key
+        <br>「新しい鍵を作成」で作成したJSONファイル内に書かれている、とても長い文字列
+      </div>
+    </div>
+    <div class="kintoneplugin-row">
+      <div class="kintoneplugin-label">ボタン名</div>
+      <div class="kintoneplugin-input-outer">
+        <input type="text" id="buttonLabel" class="kintoneplugin-input-text">
+      </div>
       <div class="kintoneplugin-desc">ボタンに表示する文字列を変更できます（デフォルトは「スプシに出力」）</div>
-    </p>
-    <p class="kintoneplugin-row">
+    </div>
+    <div class="kintoneplugin-row">
       <button type="button" class="js-cancel-button kintoneplugin-button-dialog-cancel">キャンセル</button>
       <button class="kintoneplugin-button-dialog-ok">保存</button>
-    </p>
+    </div>
   </form>
 </section>
