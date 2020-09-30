@@ -37,6 +37,7 @@ kintone.events.on("app.record.index.show", () => {
       sheetName: config.sheetName,
       serviceAccountClientEmail: config.serviceAccountClientEmail,
       serviceAccountPrivateKey: config.serviceAccountPrivateKey,
+      fieldCodeList: config.fieldCodeList,
     });
 
     spinner.show();

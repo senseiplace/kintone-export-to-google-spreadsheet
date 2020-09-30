@@ -6,6 +6,7 @@ export default class KintoneToSpreadsheet {
   sheetName: string;
   serviceAccountClientEmail: string;
   serviceAccountPrivateKey: string;
+  fieldCodeList: string;
 
   headerKeys?: string[];
   allRecordsArray?: string[][];
@@ -15,16 +16,19 @@ export default class KintoneToSpreadsheet {
     sheetName = "kintone連携",
     serviceAccountClientEmail,
     serviceAccountPrivateKey,
+    fieldCodeList = "",
   }: {
     spreadsheetId: string;
     sheetName?: string;
     serviceAccountClientEmail: string;
     serviceAccountPrivateKey: string;
+    fieldCodeList?: string;
   }) {
     this.spreadsheetId = spreadsheetId;
     this.sheetName = sheetName;
     this.serviceAccountClientEmail = serviceAccountClientEmail;
     this.serviceAccountPrivateKey = serviceAccountPrivateKey;
+    this.fieldCodeList = fieldCodeList;
   }
 
   /** kintoneアプリの全レコードを取得し、 this.allRecordsArray に格納 */
@@ -34,39 +38,57 @@ export default class KintoneToSpreadsheet {
       app: kintone.app.getId()!,
       orderBy: "更新日時 desc",
     });
-    console.log(allRecords);
+    // console.log(allRecords);
 
-    let keys = Object.keys(allRecords[0]);
-    keys = keys.filter(
-      (key) =>
-        ![
-          "$revision",
-          "$id",
-          "作成者",
-          "作成日時",
-          "更新者",
-          "更新日時",
-          "活動履歴",
-        ].includes(key)
-    );
-    keys.sort();
-    keys.push("作成日時");
-    keys.push("更新日時");
-    console.log(keys);
-
-    this.headerKeys = keys;
+    this.setHeaderKeys(allRecords[0]);
+    if (this.headerKeys == null || this.headerKeys.length === 0) {
+      return Promise.reject(
+        new Error(
+          "出力できる列が存在しません。プラグイン設定『出力する列の指定』を見直してください"
+        )
+      );
+    }
 
     this.allRecordsArray = [];
     allRecords.forEach((record) => {
       const rowArray: string[] = [];
-      keys.forEach((key) => {
+      this.headerKeys!.forEach((key) => {
         rowArray.push(this.parseData(record[key]));
       });
 
       this.allRecordsArray!.push(rowArray);
     });
 
-    console.log(this.allRecordsArray);
+    return Promise.resolve();
+  }
+
+  setHeaderKeys(record: any) {
+    const recordKeys = Object.keys(record);
+    let keys: string[] = [];
+
+    if (this.fieldCodeList === "") {
+      keys = recordKeys.filter(
+        (recordKey) =>
+          ![
+            "$revision",
+            "$id",
+            "作成者",
+            "作成日時",
+            "更新者",
+            "更新日時",
+            "活動履歴",
+          ].includes(recordKey)
+      );
+      keys.sort();
+      keys.push("作成日時");
+      keys.push("更新日時");
+    } else {
+      let fieldCodes = this.fieldCodeList.split(/[,|、]/);
+      fieldCodes = fieldCodes.map((item) => item.trim());
+      keys = fieldCodes.filter((fieldCode) => recordKeys.includes(fieldCode));
+    }
+
+    this.headerKeys = keys;
   }
 
   parseData(data: any): string {
