@@ -64,10 +64,10 @@ export default class KintoneToSpreadsheet {
 
   setHeaderKeys(record: any) {
     const recordKeys = Object.keys(record);
-    let keys: string[] = [];
+    let fieldCodes: string[] = [];
 
     if (this.fieldCodeList === "") {
-      keys = recordKeys.filter(
+      fieldCodes = recordKeys.filter(
         (recordKey) =>
           ![
             "$revision",
@@ -79,16 +79,23 @@ export default class KintoneToSpreadsheet {
             "活動履歴",
           ].includes(recordKey)
       );
-      keys.sort();
-      keys.push("作成日時");
-      keys.push("更新日時");
+      fieldCodes.sort();
+      fieldCodes.push("作成日時");
+      fieldCodes.push("更新日時");
     } else {
-      let fieldCodes = this.fieldCodeList.split(/[,|、]/);
-      fieldCodes = fieldCodes.map((item) => item.trim());
-      keys = fieldCodes.filter((fieldCode) => recordKeys.includes(fieldCode));
+      fieldCodes = this.fieldCodeList.split(/[,|、]/);
+      fieldCodes = fieldCodes.map((fieldCode) => fieldCode.trim());
+      fieldCodes = fieldCodes.filter((fieldCode) => fieldCode !== "");
+      fieldCodes.forEach((fieldCode) => {
+        if (!recordKeys.includes(fieldCode)) {
+          throw new Error(
+            `フィールドコード「${fieldCode}」は存在しません。プラグイン設定『出力する列の指定』を見直してください`
+          );
+        }
+      });
     }
 
-    this.headerKeys = keys;
+    this.headerKeys = fieldCodes;
   }
 
   parseData(data: any): string {
