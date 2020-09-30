@@ -30,7 +30,7 @@ kintone.events.on("app.record.index.show", () => {
     bodyElement.appendChild(popup.render());
   };
 
-  /** スプシに出力ボタンが押された際の処理 */
+  /** 「スプシに出力」ボタンが押された際の処理 */
   const onClickButton = () => {
     const kintoneToSpreadsheet = new KintoneToSpreadsheet({
       spreadsheetId: config.spreadsheetId,
