@@ -6,22 +6,22 @@
       <div class="kintoneplugin-input-outer">
         <input type="text" id="spreadsheetId" class="kintoneplugin-input-text">
       </div>
-      <div class="kintoneplugin-desc">https://docs.google.com/spreadsheets/d/xxxxxxxxxxx/edit の xxxxxxxxxxx の部分</div>
+      <div class="kintoneplugin-desc">スプレッドシートのURL https://docs.google.com/spreadsheets/d/xxxxxxxx/edit の xxxxxxxx の部分</div>
     </div>
     <div class="kintoneplugin-row">
       <div class="kintoneplugin-label">client email<span class="kintoneplugin-require">（必須）</span></div>
       <div class="kintoneplugin-input-outer">
-        <input type="text" id="serviceAccountClientEmail" class="kintoneplugin-input-text">
+        <input type="text" id="serviceAccountClientEmail" class="kintoneplugin-input-text" placeholder="xxx@yyy.iam.gserviceaccount.com">
       </div>
       <div class="kintoneplugin-desc">
         <a href="https://console.developers.google.com/apis/credentials" target="_blank" rel="noopener noreferrer">Google API Console</a> で作成したサービスアカウントの client_email
-        <br>このメールアドレスを上のスプレッドシートに編集権限で招待することも忘れずに
+        <br>このメールアドレスを、出力先となるスプレッドシートに編集権限で招待することも忘れずに
       </div>
     </div>
     <div class="kintoneplugin-row">
       <div class="kintoneplugin-label">private key<span class="kintoneplugin-require">（必須）</span></div>
       <div class="kintoneplugin-input-outer">
-        <input type="text" id="serviceAccountPrivateKey" class="kintoneplugin-input-text">
+        <input type="text" id="serviceAccountPrivateKey" class="kintoneplugin-input-text" placeholder="-----BEGIN PRIVATE KEY-----\n...">
       </div>
       <div class="kintoneplugin-desc">
         <a href="https://console.developers.google.com/apis/credentials" target="_blank" rel="noopener noreferrer">Google API Console</a> で作成したサービスアカウントの private_key
