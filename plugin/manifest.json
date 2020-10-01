@@ -2,6 +2,19 @@
   "manifest_version": 1,
   "version": 1,
   "type": "APP",
+  "name": {
+    "en": "Export kintone data to Google Spreadsheet",
+    "ja": "Googleスプレッドシートにデータ出力"
+  },
+  "description": {
+    "en": "⚠ This plugin supports only Japanese",
+    "ja": "kintone のレコードデータを Google スプレッドシートへ出力します"
+  },
+  "icon": "image/icon.png",
+  "homepage_url": {
+    "en": "https://github.com/senseiplace/kintone-export-to-google-spreadsheet",
+    "ja": "https://github.com/senseiplace/kintone-export-to-google-spreadsheet"
+  },
   "desktop": {
     "js": [
       "js/desktop.js"
@@ -10,7 +23,6 @@
       "css/desktop.css"
     ]
   },
-  "icon": "image/icon.png",
   "config": {
     "html": "html/config.html",
     "js": [
@@ -25,13 +37,5 @@
       "serviceAccountClientEmail",
       "serviceAccountPrivateKey"
     ]
-  },
-  "name": {
-    "en": "kintone-export-to-google-spreadsheet",
-    "ja": "Googleスプレッドシートにデータ出力"
-  },
-  "description": {
-    "en": "Export kintone data to Google Spreadsheet",
-    "ja": "kintone のレコードデータを Google スプレッドシートへ出力します"
   }
 }
