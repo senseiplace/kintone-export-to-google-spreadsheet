@@ -1,4 +1,5 @@
 import { KintoneRestAPIClient } from "@kintone/rest-api-client";
+import { DEFAULT_SHEET_NAME } from "./constants";
 import Spreadsheet from "./spreadsheet";
 
 export default class KintoneToSpreadsheet {
@@ -25,7 +26,7 @@ export default class KintoneToSpreadsheet {
     fieldCodeList?: string;
   }) {
     this.spreadsheetId = spreadsheetId;
-    this.sheetName = sheetName === "" ? "kintone連携" : sheetName;
+    this.sheetName = sheetName === "" ? DEFAULT_SHEET_NAME : sheetName;
     this.serviceAccountClientEmail = serviceAccountClientEmail;
     this.serviceAccountPrivateKey = serviceAccountPrivateKey;
     this.fieldCodeList = fieldCodeList;

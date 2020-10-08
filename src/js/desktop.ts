@@ -3,6 +3,7 @@ import {
   NotifyPopup,
   Spinner,
 } from "@kintone/kintone-ui-component/esm/js";
+import { DEFAULT_BUTTON_LABEL } from "./constants";
 import KintoneToSpreadsheet from "./kintoneToSpreadsheet";
 
 // @ts-expect-error
@@ -16,7 +17,7 @@ kintone.events.on("app.record.index.show", () => {
   bodyElement.appendChild(spinner.render());
 
   const menuSpaceElement = kintone.app.getHeaderMenuSpaceElement()!;
-  const buttonLabel = config.buttonLabel || "スプシに出力";
+  const buttonLabel = config.buttonLabel || DEFAULT_BUTTON_LABEL;
   const button = new Button({ text: buttonLabel, type: "submit" });
   menuSpaceElement.appendChild(button.render());
   button.on("click", () => onClickButton());
