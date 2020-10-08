@@ -45,7 +45,11 @@ kintone.events.on("app.record.index.show", () => {
     kintoneToSpreadsheet
       .exec()
       .then(() => {
-        showPopup("処理が完了しました", "success");
+        const sheetUrl = `https://docs.google.com/spreadsheets/d/${config.spreadsheetId}/`;
+        showPopup(
+          `処理が完了しました<br><a href="${sheetUrl}" target="_blank">${sheetUrl}</a>`,
+          "success"
+        );
       })
       .catch((err) => {
         showPopup(`処理が途中で失敗しました<br>${err}`);
