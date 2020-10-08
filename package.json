@@ -1,7 +1,7 @@
 {
   "name": "kintone-export-to-google-spreadsheet",
   "description": "kintoneのレコードデータをGoogleスプレッドシートへ出力するkintoneプラグイン",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "nekonenene from senseiplace(https://www.senseiplace.com)",
   "repository": "github:senseiplace/kintone-export-to-google-spreadsheet",
   "scripts": {
