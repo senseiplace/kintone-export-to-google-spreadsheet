@@ -13,7 +13,7 @@ export default class KintoneToSpreadsheet {
 
   constructor({
     spreadsheetId,
-    sheetName = "kintone連携",
+    sheetName = "",
     serviceAccountClientEmail,
     serviceAccountPrivateKey,
     fieldCodeList = "",
@@ -25,7 +25,7 @@ export default class KintoneToSpreadsheet {
     fieldCodeList?: string;
   }) {
     this.spreadsheetId = spreadsheetId;
-    this.sheetName = sheetName;
+    this.sheetName = sheetName === "" ? "kintone連携" : sheetName;
     this.serviceAccountClientEmail = serviceAccountClientEmail;
     this.serviceAccountPrivateKey = serviceAccountPrivateKey;
     this.fieldCodeList = fieldCodeList;
